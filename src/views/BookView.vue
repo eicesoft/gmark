@@ -92,10 +92,12 @@ export default {
         let resp = await get("page/search", {
           keyword: this.$route.query.keyword
         });
-        this.pages = resp.data;
+        if (resp.data !== null) {
+          this.pages = resp.data;
 
-        if (this.pages.length > 0) {
-          this.view(this.pages[0]);
+          if (this.pages.length > 0) {
+            this.view(this.pages[0]);
+          }
         }
       }
     },
@@ -213,6 +215,7 @@ code[class*="language-"] {
   text-align: center;
   vertical-align: middle;
   border: 1px solid #f0f0f0;
+  z-index: 100;
 }
 .toc {
   position: fixed;
@@ -272,13 +275,13 @@ code[class*="language-"] {
     font-weight: 800;
     background-color: #fff;
     cursor: pointer;
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 38px;
     padding: 20px 30px;
-    width: 82%;
+    width: 80%;
   }
   .view {
-    margin: 40px;
+    margin: 80px;
     height: 600px;
   }
 }

@@ -4,6 +4,7 @@
       <div>GMark</div>
       <div>
         <el-input
+          v-show="isLogin"
           @change="search"
           size="mini"
           placeholder="请输入内容"
@@ -21,7 +22,7 @@
     </el-header>
 
     <keep-alive>
-      <router-view />
+      <router-view :key="key" />
     </keep-alive>
   </el-container>
 </template>
@@ -29,6 +30,12 @@
 <script>
 export default {
   name: "gmark-layout",
+  computed: {
+    key() {
+      let path = this.$route.fullPath.split("#");
+      return this.$route.fullPath !== undefined ? path[0] : "/";
+    }
+  },
   data() {
     return {
       keyword: "",
