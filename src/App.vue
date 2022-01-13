@@ -26,7 +26,7 @@ body {
 }
 a {
   color: #1f5d9b;
-  text-decoration-line: none;
+  text-decoration-line: none !important;
 }
 
 a:hover {

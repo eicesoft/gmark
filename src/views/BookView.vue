@@ -2,9 +2,11 @@
   <el-container>
     <el-aside width="200px" class="menus">
       <div style="text-align: right; margin-right: 10px; line-height: 28px">
-        <el-link type="info" @click="back">返回</el-link>
+        <el-link type="info" @click="back" :underline="false">返回</el-link>
         &nbsp;
-        <el-link type="primary" @click="newPage">新建</el-link>
+        <el-link type="primary" @click="newPage" :underline="false">
+          新建
+        </el-link>
       </div>
       <div
         @click="view(page)"
@@ -30,9 +32,14 @@
         <div v-if="now_page != null" @click="tocActive = false">
           <div class="page-title">
             {{ now_page.title }}
-            <i @click="editPage(now_page)" class="el-icon-edit-outline"></i>
+            <i
+              title="编辑"
+              @click="editPage(now_page)"
+              class="el-icon-edit-outline"
+            ></i>
+            <i title="下载" @click="download()" class="el-icon-download"></i>
           </div>
-          <div class="line-numbers">
+          <div class="line-numbers" ref="page">
             <vue-markdown
               class="view"
               :html="true"
@@ -79,6 +86,9 @@ export default {
     this.load();
   },
   methods: {
+    download() {
+      this.getPdfFromHtml(this.$refs.page, this.now_page.title);
+    },
     async load() {
       console.log(this.$route.query);
       if (this.$route.query.id != undefined) {
@@ -266,6 +276,9 @@ code[class*="language-"] {
     }
   }
 }
+.line-numbers {
+  height: 100%;
+}
 .page {
   text-align: left;
   //   padding: 40px;
@@ -282,7 +295,7 @@ code[class*="language-"] {
   }
   .view {
     margin: 80px;
-    height: 600px;
+    // height: 600px;
   }
 }
 </style>

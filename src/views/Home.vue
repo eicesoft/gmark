@@ -122,12 +122,18 @@ export default {
   top: 60px;
 }
 .books {
+  user-select: none;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   padding: 20px 48px;
   .book {
+    &:hover {
+      box-shadow: 2px 2px 2px #dae9ff;
+      background-color: rgb(217, 232, 250);
+      border: 1px solid #accaf7;
+    }
     position: relative;
     width: 120px;
     border-radius: 4px;

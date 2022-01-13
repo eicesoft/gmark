@@ -68,7 +68,7 @@ export default {
       }
     };
   },
-  async activated() {
+  async created() {
     console.log(document.documentElement.clientHeight);
     this.editHeight = document.documentElement.clientHeight - 150;
     window.onresize = () => {

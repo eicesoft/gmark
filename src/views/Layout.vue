@@ -16,14 +16,14 @@
       <div class="userinfo">
         <div v-show="isLogin">
           当前用户: {{ user.Name }}
-          <el-link @click="exit">退出</el-link>
+          <el-link :underline="false" @click="exit">退出</el-link>
         </div>
       </div>
     </el-header>
 
-    <keep-alive>
-      <router-view :key="key" />
-    </keep-alive>
+    <!-- <keep-alive> -->
+    <router-view :key="key" />
+    <!-- </keep-alive> -->
   </el-container>
 </template>
 
